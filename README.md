@@ -68,7 +68,11 @@ indicating which example from Table 14 the current block represents.
 
 The second line usually contains the actual Links code. Alternatively, in some
 cases, the second line contains a path to a `.links` file containing the actual
-code. The syntax of Links differs from FreezeML. See section "Differences
+code. Note that the paths given in the second line are relative to the directory 
+`~/freezeml/links`. For clarity, we have also added the *full* path to the first
+line of such blocks.
+
+The syntax of Links differs from FreezeML. See section "Differences
 between Links and FreezeML" below for a brief description of the syntactic
 differences.
 

@@ -47,7 +47,7 @@ choose(id)(auto')
 #exit : 1
 #stderr : @.*Type error:.*
 
-#Polymorphic Instantiation (9)   (see file ~/freezeml/links/tests/freezeml/a9.links)
+#Polymorphic Instantiation (9) (see file ~/freezeml/links/tests/freezeml/a9.links)
 tests/freezeml/a9.links
 #filemode : true
 #stdout : fun : forall a,b::Row.(a) -b-> a
@@ -133,13 +133,13 @@ runST(~argST)
 revapp(~argST)(runST)
 #stdout : 0 : Int
 
-#η-expansion (1)  (see file ~/freezeml/links/tests/freezeml/e1.links), type-checking supposed to fail
+#η-expansion (1) (see file ~/freezeml/links/tests/freezeml/e1.links), type-checking supposed to fail
 tests/freezeml/e1.links
 #filemode : true
 #exit : 1
 #stderr : @.*Type error:.*
 
-#η-expansion (2)  (see file ~/freezeml/links/tests/freezeml/e2.links)
+#η-expansion (2) (see file ~/freezeml/links/tests/freezeml/e2.links)
 tests/freezeml/e2.links
 #filemode : true
 #stdout : fun : forall a::Row,b,c::Row.(Int) -a-> (b) -c-> b
