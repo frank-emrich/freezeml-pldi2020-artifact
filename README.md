@@ -14,7 +14,7 @@ inside the virtual machine by issuing the following command:
 or continue reading this file.
 
 The root password for the virtual machine is "pldi2020".  The operating system
-inside the VM is a Debian Linux 10 and comes with Emacs and Vim editors alreadt
+inside the VM is a Debian Linux 10 and comes with Emacs and Vim editors already
 installed.
 
 We have implemented FreezeML in [Links](https://links-lang.org/), a
@@ -31,7 +31,7 @@ Reproducing the Paper Results
 The freeze operator is implemented as `~` in Links, meaning that a variable `x`
 is frozen by writing `~x`.  Instantiation and generalisation are written as e@
 and $e, respectively, as in the paper. Here, e can be an arbitrary Links
-expression, potentially enclosed in parantheses.
+expression, potentially enclosed in parentheses.
 
 The FreezeML paper contains a large set of example programs in Table 14 in
 Appendix A. The easiest way to verify that Links implements FreezeML is by
@@ -61,9 +61,9 @@ the value restriction. We will clarify this in the final version of the paper.
 
 The file `examples.txt` contains several blocks of consecutive lines, separated
 by an empty line. Each such block represents one example from
-Table 14. Intuitively, all lines starting with `#` contain extra informatio; the
+Table 14. Intuitively, all lines starting with `#` contain extra information; the
 lines not starting with `#` contain the actual example programs, either as
-literal Links programs or paths to a file containg the program.
+literal Links programs or paths to a file containing the program.
 
 The first line in each block starts with `#` and contains a description,
 indicating which example from Table 14 the current block represents.
@@ -78,7 +78,7 @@ The syntax of Links differs from FreezeML. See section "Differences
 between Links and FreezeML" below for a brief description of the syntactic
 differences.
 
-Finally, the lines from the third onwards give extra information about the
+Finally, the lines from the third onward give extra information about the
 expected output of the program:
 
 This includes
@@ -107,7 +107,7 @@ explanation of these settings.
 After starting the REPL, you can copy-paste a given example program, followed by
 `;;` and pressing enter. This will process the snippet and show its type.
 
-Files containging programs can be loaded by issuing the following in
+Files containing programs can be loaded by issuing the following in
 the REPL: `@load filepath/goes/here ;;`.
 
 
@@ -115,7 +115,7 @@ the REPL: `@load filepath/goes/here ;;`.
 ### Running the Test Suite
 
 Alternatively, you can invoke `./run-tests.sh` from the `~/freezeml`
-directoy. This converts `examples.txt` into a file readable by Links' internal
+directory. This converts `examples.txt` into a file readable by Links' internal
 test suite, contained in the `links` subdirectory. It runs each example program
 individually and verifies that the actual output and/or return code matches the
 expected information.
@@ -126,7 +126,7 @@ expected information.
 ### Syntax
 The syntax of FreezeML and Links differ as follows:
 
-* Function applications require parantheses in Links. Hence, the FreezeML
+* Function applications require parentheses in Links. Hence, the FreezeML
   program `f x` becomes `f(x)` in Links. This also holds when applying multiple,
   curried arguments: `f x y` becomes `f(x)(y)`.
 * Functions are defined with the `fun` keyword in Links. The FreezeML function
@@ -137,7 +137,7 @@ The syntax of FreezeML and Links differ as follows:
   variables are bound with the `var` keyword, the binding is terminated by
   `;`. Hence, the `let` binding above would be written as `var x = M; N` in
   Links
-* Function types always require paranthesis on the parameter in Links. For
+* Function types always require parenthesis on the parameter in Links. For
   example, the FreezeML type `a -> b` is written as `(a) -> b` in Links
 * Links supports annotations on binders and overall bindings. For example, we
    can write `fun inc (x : Int) {x + 1}` or alternatively
@@ -151,14 +151,14 @@ The syntax of FreezeML and Links differ as follows:
 
 
 For more information on Links' syntax, see
-[its documentation](https://links-lang.org/quick-help.html)
+[its documentation](https://links-lang.org/quick-help.html).
 
 ### Typing
 
 The main differences between Links and FreezeML are the following:
 
 #### Row typing
-Links uses a type-effect system based on Remy-style row polymorphism. This means
+Links uses a type-effect system based on Rémy-style row polymorphism. This means
 that a function type `(a) -> b` in Links is actually syntactic sugar for
 `(a) {|c}-> b`,
 where `{|c}` is an empty effect row ending with the *fresh* effect
@@ -181,7 +181,7 @@ function arrow, as in `-c->`. These row variables have no counterpart in
 FreezeML.
 
 #### Scoping of type variables
-For compatibilty reasons with legacy code, the scoping behavior of type
+For compatibility reasons with legacy code, the scoping behavior of type
 variables works differently in Links than in FreezeML. In Links, one can omit
 quantifiers at the top of a type annotation. Consider the following two versions
 of the same function
@@ -199,10 +199,10 @@ fun f2(x) {x}
 The only difference is that in f1, the type variable `a` is explicitly quantified,
 whereas in `f2` the type signature just states `(a) -> a`, without the annotation.
 However, both functions are still given the same type, as the type variables of
-the signature of `f2` are implicitly generalized.
+the signature of `f2` are implicitly generalised.
 The two versions only differ in whether or not `a` is bound in the body of the
 function is not. The rule is that if the type annotation explicitly states the
-`forall` quantifier, then the type variales are not bound in the body.
+`forall` quantifier, then the type variables are not bound in the body.
 
 Hence, the following version of `f1` is illegal:
 
@@ -219,7 +219,7 @@ fun f2(x) {x : a}
 ```
 
 This differs from FreezeML, where `let (x : forall a. A) = M in N ` binds a in
-`M`, if `M` is generalizable.
+`M`, if `M` is generalisable.
 
 
 ### Default settings
@@ -235,8 +235,8 @@ which make Links behave closer to FreezeML:
 * `hide_fresh_type_vars=false` By default, Links hides type variables that are
   fresh (i.e., only occur in a single location). This setting evokes that all
   type variables are shown.
-* `generalise_toplevel=false` By default, the Links REPL generalizes any overall
-  expression entered, if the expression is generalizable. For instance, entering
+* `generalise_toplevel=false` By default, the Links REPL generalises any overall
+  expression entered, if the expression is generalisable. For instance, entering
   `fun (x) {x}` into the REPL would yield type `forall a. a -> a`. By setting
-  `generalise_toplevel=false`, we prevent this generalization, and the
+  `generalise_toplevel=false`, we prevent this generalisation, and the
   expression would be given type `b -> b` for some flexible type variable `b`.
