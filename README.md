@@ -5,7 +5,7 @@ We provide the file `freezeml-pldi2020.ova`, which is virtual machine stored in 
 Open Virtual Appliance format supported by most virtualization software.  Use
 your favourite virtualization solution (VirtualBox, VMWare) to import the
 virtual machine file.  After booting up the virtual machine log in as "user"
-with password "user".  You will be automatically taken to `~/freezeml/`
+with password "user".  You will be automatically taken to the `~/freezeml/`
 directory, which contains a copy of this README file.  You can view the readme
 inside the virtual machine by issuing the following command:
 
@@ -13,9 +13,12 @@ inside the virtual machine by issuing the following command:
 
 or continue reading this file.
 
-The root password for the virtual machine is "pldi2020".  Operating system inside
-the VM is a Debian Linux 10 and comes with Emacs and Vim editors alreadt
+The root password for the virtual machine is "pldi2020".  The operating system
+inside the VM is a Debian Linux 10 and comes with Emacs and Vim editors alreadt
 installed.
+
+We have implemented FreezeML in [Links](https://links-lang.org/), a
+functional programming language with a rich set of features.
 
 The following section, "Reproducing the Paper Results" gives a quick introduction
 on how to validate that Links implements FreezeML. The subsequent section gives
@@ -24,8 +27,6 @@ some background information.
 Reproducing the Paper Results
 =============================
 
-We have implemented FreezeML in [Links](https://links-lang.org/), a
-functional programming language with a rich set of features.
 
 The freeze operator is implemented as `~` in Links, meaning that a variable `x`
 is frozen by writing `~x`.  Instantiation and generalisation are written as e@
@@ -35,11 +36,12 @@ expression, potentially enclosed in parantheses.
 The FreezeML paper contains a large set of example programs in Table 14 in
 Appendix A. The easiest way to verify that Links implements FreezeML is by
 checking that for each program in Table 14 there exists a corresponding version
-in Links. Note that those examples in Table 14 marked with X (i.e., A8, E1, and
+in Links of the same type, modulo minor differences described later on.
+
+Note that those examples in Table 14 marked with X (i.e., A8, E1, and
 E3) do not type-check in FreezeML and do not type-check in Links, either. The
 examples from Table 14 rely on the functions given in Figure 15 with their
 respective types.
-
 
 Thus, we provide two separate files in the `~/freezeml` directory:
   * `environment.links` contains the functions shown in Figure 15. This is a
@@ -68,7 +70,7 @@ indicating which example from Table 14 the current block represents.
 
 The second line usually contains the actual Links code. Alternatively, in some
 cases, the second line contains a path to a `.links` file containing the actual
-code. Note that the paths given in the second line are relative to the directory 
+code. Note that the paths given in the second line are relative to the directory
 `~/freezeml/links`. For clarity, we have also added the *full* path to the first
 line of such blocks.
 
@@ -147,6 +149,9 @@ The syntax of FreezeML and Links differ as follows:
     binding it applies to.  Such signatures can also be used with `var`
     bindings.
 
+
+For more information on Links' syntax, see
+[https://links-lang.org/quick-help.html]
 
 ### Typing
 
