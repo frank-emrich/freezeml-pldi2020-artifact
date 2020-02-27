@@ -1,7 +1,7 @@
 Getting Started Guide
 =====================
 
-We provide the file `freezeml-pldi2020.ova`, which is virtual machine stored in an
+We provide the file `freezeml-pldi2020.ova`, which is virtual machine stored in the
 Open Virtual Appliance format supported by most virtualization software.  Use
 your favourite virtualization solution (VirtualBox, VMWare) to import the
 virtual machine file.  After booting up the virtual machine log in as "user"
@@ -112,13 +112,13 @@ the REPL: `@load filepath/goes/here ;;`.
 
 
 
-### Running the Test-Suite
+### Running the Test Suite
 
-Alternatively, you can invoke `./run-tests.sh` from the home directoy. This
-converts `examples.txt` into a file readable by Links' internal test driver,
-contained in the `links` subdirectory. It runs each example program individually
-and verifies that the actual output and/or return code matches the expected
-information.
+Alternatively, you can invoke `./run-tests.sh` from the `~/freezeml`
+directoy. This converts `examples.txt` into a file readable by Links' internal
+test suite, contained in the `links` subdirectory. It runs each example program
+individually and verifies that the actual output and/or return code matches the
+expected information.
 
 
 ## Background Information: Differences between Links and FreezeML
@@ -151,7 +151,7 @@ The syntax of FreezeML and Links differ as follows:
 
 
 For more information on Links' syntax, see
-[https://links-lang.org/quick-help.html]
+[its documentation](https://links-lang.org/quick-help.html)
 
 ### Typing
 
