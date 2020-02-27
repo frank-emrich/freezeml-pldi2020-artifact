@@ -1,7 +1,7 @@
 Getting Started Guide
 =====================
 
-We provide a `freezeml-pldi2020.ova` file, which is virtual machine stored in an
+We provide the file `freezeml-pldi2020.ova`, which is virtual machine stored in an
 Open Virtual Appliance format supported by most virtualization software.  Use
 your favourite virtualization solution (VirtualBox, VMWare) to import the
 virtual machine file.  After booting up the virtual machine log in as "user"
@@ -101,11 +101,12 @@ explanation of these settings.
 After starting the REPL, you can copy-paste a given example program, followed by
 `;;` and pressing enter. This will process the snippet and show its type.
 
-Files containging programs can be loaded by TODO PUT HERE.
+Files containging programs can be loaded by issuing the following in
+the REPL: `@load filepath/goes/here ;;`.
 
 
 
-### Running the test-suite
+### Running the Test-Suite
 
 Alternatively, you can invoke `./run-tests.sh` from the home directoy. This
 converts `examples.txt` into a file readable by Links' internal test driver,
@@ -146,6 +147,7 @@ The syntax of FreezeML and Links differ as follows:
 ### Typing
 
 The main differences between Links and FreezeML are the following:
+
 #### Row typing
 Links uses a type-effect system based on Remy-style row polymorphism. This means
 that a function type `(a) -> b` in Links is actually syntactic sugar for
@@ -157,9 +159,9 @@ type can be written as `(a) -c-> b`, which is also just syntactic sugar for
 
 This leads to small differences between the types shown in Table 14 and the
 types shown by Links for the corresponding Links program.  For instance, the
-example A1* is shown to have type forall a b. a -> b -> b in Table 14. However,
+example A1• is shown to have type forall a b. a -> b -> b in Table 14. However,
 the corresponding Links program has type `forall
-a,b::Row,c::(Any,Any),d::Row.(a) -b-> (c::Any) -d-> c::Any` (see line TODO) in
+a,b::Row,c::(Any,Any),d::Row.(a) -b-> (c::Any) -d-> c::Any` (see line 6 in `examples.txt`) in
 `examples.txt`.
 
 The only difference is that in the latter type, the row variables `b` and `d`
