@@ -66,10 +66,10 @@ The file `examples.tests` contains verbatim translations of the corresponding
 programs from Figure 14, with the following special cases:
 
 1. The examples A11\*, A12\*, C6\*, E3, and E3• exhibit the interaction of
-   FreezeML and support for Links' linearity, which we described in section 6 of
-   the paper: In these examples, we need to annotate function parameters with
+   FreezeML and Links' inference of linearity, which we described in section 6
+   of the paper: In these examples, we need to annotate function parameters with
    their kind to prevent Links from inferring that the parameter is linear.
-   However, the *types* of the function arguments are still inferred.
+   However, the *types* of the function parameters are still inferred.
 
 2. We have discovered that examples F3 and F4 need an annotation on the
    variable `x`, which we will fix in the final version of the paper.
