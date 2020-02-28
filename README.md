@@ -34,10 +34,10 @@ expression, potentially enclosed in parentheses.
 
 There are several differences between Links and FreezeML.  These are either
 cosmetic (slightly different syntax) or orthogonal to the system presented in
-the paper, e.g. Links has a more powerful type system based on row typing but
-this does not interact with first-class polymorphism.  See section "Differences
-between Links and FreezeML" below for a description of the most important
-differences.
+the paper, e.g. Links has a more powerful type system based on row typing.
+However, the row typing does not interact with first-class polymorphism. See
+section "Differences between Links and FreezeML" below for a description of the
+most important differences.
 
 
 Reproducing the Paper Results
