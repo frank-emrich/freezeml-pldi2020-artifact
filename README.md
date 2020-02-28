@@ -24,8 +24,15 @@ installed.
 Implementation
 ==============
 
-We have implemented FreezeML in [Links](https://links-lang.org/), a
-functional programming language with a rich set of features.
+We have implemented FreezeML in [Links](https://links-lang.org/), a functional
+programming language.  Links version provided inside this virtual machine is
+0.9.1.  Current version of Links can be installed on Linux via OPAM:
+
+```
+opam install links
+```
+
+The sources are publicly available [here](https://github.com/links-lang/links).
 
 The freeze operator is implemented as `~` in Links, meaning that a variable `x`
 is frozen by writing `~x`.  Instantiation and generalisation are written as `e@`
@@ -111,7 +118,6 @@ in Links with the correct types. Both methods rely on invoking a vanilla
 installation of Links 0.9.1, which is present in the VM.
 
 
-
 Testing via REPL
 ----------------
 
@@ -161,12 +167,10 @@ just press the up arrow key after starting the REPL for the first time.
    fun (x) {x} ;
    ```
 
-
 2) A named version of the identity function.
    ```
    fun f(x) {x} ;
    ```
-
 
 3) The same function, but with a signature that gives the parameter `x` the
    polymorphic type `forall a. a`.  Further, the signature evokes that the
@@ -185,7 +189,6 @@ just press the up arrow key after starting the REPL for the first time.
    functions on a single line each.
 
 
-
 4) A version of `g` that freezes `x`, hence resulting in the same polymorphic
    return type as before.
    ```
@@ -193,13 +196,11 @@ just press the up arrow key after starting the REPL for the first time.
    fun h (x) {~x} ;
    ```
 
-
 5) Using the parameter as a function.
    ```
    sig i : (forall a. a) -> (forall a. a)
    fun i (x) {x(~x)} ;
    ```
-
 
 6) Version of `i` that switches the location of the freeze operator, which leads
    to an ill-typed program.
@@ -208,25 +209,21 @@ just press the up arrow key after starting the REPL for the first time.
    fun j (x) {~x(x)} ;
    ```
 
-
 7) This doesn't work on its own
    ```
    fun k(x) {x(x)} ;
    ```
-
 
 8) Neither does this...
    ```
    fun l(x) {x(~x)} ;
    ```
 
-
 9) Creates a variable whose value is [], since writing ~[] doesn't work on its
    own
    ```
    var nil = [] ;
    ```
-
 
 10) Creates a list of three polymorphic `nil`s
     ```
