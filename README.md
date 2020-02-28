@@ -190,44 +190,43 @@ first time.
      fun h (x) {~x} ;;
    ```
 
-5)
-  ```
-  sig i : (forall a. a) -> (forall a. a)
-  fun i (x) {x(~x)} ;;
-  ```
-  Using the parameter as a function
+5) Using the parameter as a function
+   ```
+     sig i : (forall a. a) -> (forall a. a)
+     fun i (x) {x(~x)} ;;
+   ```
 
-6)
-  ```
-  sig j : (forall a. a) -> (forall a. a)
-  fun j (x) {~x(x)} ;;
-  ```
-  Version of `i` that switches the location of the freeze operatior, which leads
-  to an ill-typed program.
 
-7)
-  ```
-  fun k(x) {x(x)} ;;
-  ```
-  This doesn't work on its own
+6) Version of `i` that switches the location of the freeze operatior, which leads
+   to an ill-typed program.
+   ```
+     sig j : (forall a. a) -> (forall a. a)
+     fun j (x) {~x(x)} ;;
+   ```
 
-8)
-  ```
-  fun l(x) {x(~x)} ;;
-  ```
-  Neither does this...
+7) This doesn't work on its own
+   ```
+     fun k(x) {x(x)} ;;
+    ```
 
-9)
-```
-  var nil = [] ;;
-  ```
-  Creates a variable whose value is [], since writing ~[] doesn't work on its own
+8) Neitherr does this...
+   ```
+     fun l(x) {x(~x)} ;;
+   ```
 
-10)
-  ```
-   map (fun (x) {~nil})([1,2,3]) ;;
-  ```
-  Creates a list of three polymorphic nils
+
+9) Creates a variable whose value is [], since writing ~[] doesn't work on its
+   own
+   ```
+     var nil = [] ;;
+   ```
+
+
+10) Creates a list of three polymorphic nils
+    ```
+      map (fun (x) {~nil})([1,2,3]) ;;
+    ```
+
 
 
 
