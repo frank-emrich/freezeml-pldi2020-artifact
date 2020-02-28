@@ -1,9 +1,9 @@
 Getting Started Guide
 =====================
 
-We provide the file `freezeml-pldi2020.ova`, which is virtual machine stored in the
-Open Virtual Appliance format supported by most virtualization software.  Use
-your favourite virtualization solution (VirtualBox, VMWare) to import the
+We provide the file `freezeml-pldi2020.ova`, which is a virtual machine stored
+in the Open Virtual Appliance format supported by most virtualisation software.
+Use your favourite virtualisation solution (VirtualBox, VMWare) to import the
 virtual machine file.  After booting up the virtual machine log in as "user"
 with password "user".  You will be automatically taken to the `~/freezeml/`
 directory, which contains a copy of this README file.  You can view the readme
@@ -11,30 +11,33 @@ inside the virtual machine by issuing the following command:
 
     less README.md
 
-or continue reading this file.
+or continue reading this file.  If you decide to read this file inside the
+virtual machine it is recommended that you log into the second terminal so that
+you can run the examples without closing the readme.  Use Alt+F1 / Alt+F2 to
+switch to the first and second terminal respectively.
 
 The root password for the virtual machine is "pldi2020".  The operating system
 inside the VM is a Debian Linux 10 and comes with Emacs and Vim editors already
 installed.
 
-We have implemented FreezeML in [Links](https://links-lang.org/), a
-functional programming language with a rich set of features.
+The following section, "Reproducing the Paper Results" gives a quick
+introduction on how to validate that Links implements FreezeML.  The subsequent
+section gives some background information.
 
-The following section, "Reproducing the Paper Results" gives a quick introduction
-on how to validate that Links implements FreezeML. The subsequent section gives
-some background information.
 
 Reproducing the Paper Results
 =============================
 
+We have implemented FreezeML in [Links](https://links-lang.org/), a
+functional programming language with a rich set of features.
 
 The freeze operator is implemented as `~` in Links, meaning that a variable `x`
-is frozen by writing `~x`.  Instantiation and generalisation are written as e@
-and $e, respectively, as in the paper. Here, e can be an arbitrary Links
+is frozen by writing `~x`.  Instantiation and generalisation are written as `e@`
+and `$e`, respectively, as in the paper.  Here, `e` can be an arbitrary Links
 expression, potentially enclosed in parentheses.
 
 The FreezeML paper contains a large set of example programs in Table 14 in
-Appendix A. The easiest way to verify that Links implements FreezeML is by
+Appendix A.  The easiest way to verify that Links implements FreezeML is by
 checking that for each program in Table 14 there exists a corresponding version
 in Links of the same type, modulo minor differences described later on.
 
@@ -44,29 +47,28 @@ examples from Table 14 rely on the functions given in Figure 15 with their
 respective types.
 
 Thus, we provide two separate files in the `~/freezeml` directory:
-  * `environment.links` contains the functions shown in Figure 15. This is a
-    valid Links source file.
-  * `examples.txt` contains the examples from Table 14, which in turn use the
+
+  * `environment.links` contains the definitions of functions shown in Figure
+    15.  This is a valid Links source file.
+
+  * `examples.tests` contains the examples from Table 14, which in turn use the
     functions from `environment.links`
 
-Note that `examples.txt` does not contain a tenth example in the "FreezeML
-programs" section, meaning that program F10 from Table 14 is missing in
-`examples.txt`. This is due to an error we only discovered after submitting the
-paper. Program F10 only type-checks in a version of FreezeML that does not obey
-the value restriction. We will clarify this in the final version of the paper.
+Note that `examples.tests` does not contain the example F10 from Table 14 of our
+paper.  This is due to an error we only discovered after submitting the paper.
+Program F10 only type-checks in a version of FreezeML that does not obey the
+value restriction.  We will clarify this in the final version of the paper.
 
 
-## Reading examples.txt
+Reading examples.tests
+----------------------
 
+The file `examples.tests` contains several blocks of consecutive lines,
+separated by an empty line.  Each such block represents one example from Table
+14.
 
-The file `examples.txt` contains several blocks of consecutive lines, separated
-by an empty line. Each such block represents one example from
-Table 14. Intuitively, all lines starting with `#` contain extra information; the
-lines not starting with `#` contain the actual example programs, either as
-literal Links programs or paths to a file containing the program.
-
-The first line in each block starts with `#` and contains a description,
-indicating which example from Table 14 the current block represents.
+The first line in each block contains a description, indicating which example
+from Table 14 the current block represents.
 
 The second line usually contains the actual Links code. Alternatively, in some
 cases, the second line contains a path to a `.links` file containing the actual
@@ -91,7 +93,7 @@ type. See the section "Differences between Links and FreezeML" below for a
 description of the (minor) differences between the types shown by Links and
 those shown in Table 14.
 
-There are two ways to verify that the programs from `examples.txt` type-check in
+There are two ways to verify that the programs from `examples.tests` type-check in
 Links with the correct types:
 
 ### Testing via REPL
@@ -115,15 +117,18 @@ the REPL: `@load filepath/goes/here ;;`.
 ### Running the Test Suite
 
 Alternatively, you can invoke `./run-tests.sh` from the `~/freezeml`
-directory. This converts `examples.txt` into a file readable by Links' internal
+directory. This converts `examples.tests` into a file readable by Links' internal
 test suite, contained in the `links` subdirectory. It runs each example program
 individually and verifies that the actual output and/or return code matches the
 expected information.
 
 
-## Background Information: Differences between Links and FreezeML
+Background Information: Differences between Links and FreezeML
+==============================================================
 
-### Syntax
+Syntax
+------
+
 The syntax of FreezeML and Links differ as follows:
 
 * Function applications require parentheses in Links. Hence, the FreezeML
@@ -170,8 +175,8 @@ This leads to small differences between the types shown in Table 14 and the
 types shown by Links for the corresponding Links program.  For instance, the
 example A1• is shown to have type forall a b. a -> b -> b in Table 14. However,
 the corresponding Links program has type `forall
-a,b::Row,c::(Any,Any),d::Row.(a) -b-> (c::Any) -d-> c::Any` (see line 6 in `examples.txt`) in
-`examples.txt`.
+a,b::Row,c::(Any,Any),d::Row.(a) -b-> (c::Any) -d-> c::Any` (see line 6 in `examples.tests`) in
+`examples.tests`.
 
 The only difference is that in the latter type, the row variables `b` and `d`
 are also quantified over. For the purposes of comparing FreezeML with its
