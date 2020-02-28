@@ -158,21 +158,18 @@ the REPL, you can just press the up arrow key after starting the REPL for the
 first time.
 
 
-1.
-  ```
+1.```
   fun (x) {x} ;;
   ```
   The identity function as an anynoymlus function. Note the trailing `;;`
   to terminate REPL input.
 
-2.
-  ```
+2.```
   fun f(x) {x} ;;
   ```
   A named version of the same function
 
-3.
-  ```
+3.```
   sig g : (forall a. a) -> (forall a. a)
   fun g (x) {x} ;;
   ```
@@ -185,50 +182,43 @@ first time.
   on a single line each.
 
 
-4.
-  ```
+4.```
   sig h : (forall a. a) -> (forall a. a)
   fun h (x) {~x} ;;
   ```
   A version of `g` that freezes `x`, hence resulting in the same polymorphic
   return type as before
 
-5.
-  ```
+5.```
   sig i : (forall a. a) -> (forall a. a)
   fun i (x) {x(~x)} ;;
   ```
   Using the parameter as a function
 
-6.
-  ```
+6.```
   sig j : (forall a. a) -> (forall a. a)
   fun j (x) {~x(x)} ;;
   ```
   Version of `i` that switches the location of the freeze operatior, which leads
   to an ill-typed program.
 
-7.
-  ```
+7.```
   fun k(x) {x(x)} ;;
   ```
   This doesn't work on its own
 
-8.
-  ```
+8.```
   fun l(x) {x(~x)} ;;
   ```
   Neither does this...
 
-9.
-  ```
+9.```
   var nil = [] ;;
   ```
   Creates a variable whose value is [], since writing ~[] doesn't work on its own
 
-10.
-  ```
-  map (fun (x) {~nil})([1,2,3]) ;;
+10.```
+   map (fun (x) {~nil})([1,2,3]) ;;
   ```
   Creates a list of three polymorphic nils
 
