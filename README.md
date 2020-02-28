@@ -130,6 +130,8 @@ Files containing programs can be loaded by issuing the following in the REPL:
 type error.
 
 
+For more information about using the REPL, see the corresponding section below.
+
 
 Running the Test Suite
 ----------------------
@@ -137,6 +139,100 @@ Running the Test Suite
 Alternatively, you can invoke `./run-examples.py` from the `~/freezeml`
 directory.  This will run each example program individually and verify that the
 actual output and/or return code matches the expected information.
+
+
+Using the REPL
+==============
+
+As stated earlier, you can start the REPL via `links --config=freezeml.config`
+from the ~/freezeml directory.
+
+Here are some programs you may enter into the REPL. Note that there is a brief
+description of the Links syntax in section "Differences between Links and
+FreezeML" below. The Links REPL has a command history (similar to normal
+shells), which you can access by pressing the up arrow and down arrow keys.
+
+For your convenience, we have setup the REPL in a way such that the programs
+below are part of the command history already. Thus, instead of typing them into
+the REPL, you can just press the up arrow key after starting the REPL for the
+first time.
+
+
+1.
+  ```
+  fun (x) {x} ;;
+  ```
+  The identity function as an anynoymlus function. Note the trailing `;;`
+  to terminate REPL input.
+
+2.
+  ```
+  fun f(x) {x} ;;
+  ```
+  A named version of the same function
+
+3.
+  ```
+  sig g : (forall a. a) -> (forall a. a)
+  fun g (x) {x} ;;
+  ```
+  The same function, but with a signature that gives the parameter `x` the
+  polymorphic type `forall a. a`.
+  Further, the signature evokes that the return type is instantiated to be
+  `forall a. a`, too.
+  Note that REPL input can span multiple lines, as it must be terminated by `;`.
+  For clarity, in the pre-installed command history, we have put all functions
+  on a single line each.
+
+
+4.
+  ```
+  sig h : (forall a. a) -> (forall a. a)
+  fun h (x) {~x} ;;
+  ```
+  A version of `g` that freezes `x`, hence resulting in the same polymorphic
+  return type as before
+
+5.
+  ```
+  sig i : (forall a. a) -> (forall a. a)
+  fun i (x) {x(~x)} ;;
+  ```
+  Using the parameter as a function
+
+6.
+  ```
+  sig j : (forall a. a) -> (forall a. a)
+  fun j (x) {~x(x)} ;;
+  ```
+  Version of `i` that switches the location of the freeze operatior, which leads
+  to an ill-typed program.
+
+7.
+  ```
+  fun k(x) {x(x)} ;;
+  ```
+  This doesn't work on its own
+
+8.
+  ```
+  fun l(x) {x(~x)} ;;
+  ```
+  Neither does this...
+
+9.
+  ```
+  var nil = [] ;;
+  ```
+  Creates a variable whose value is [], since writing ~[] doesn't work on its own
+
+10.
+  ```
+  map (fun (x) {~nil})([1,2,3]) ;;
+  ```
+  Creates a list of three polymorphic nils
+
+
 
 
 Differences between Links and FreezeML
