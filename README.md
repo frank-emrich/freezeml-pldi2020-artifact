@@ -36,8 +36,8 @@ There are several differences between Links and FreezeML.  These are either
 cosmethic (slightly different syntax) or orthogonal to the system presented in
 the paper, e.g. Links has a more powerful type system based on row typing but
 this does not interact with first-class polymorphism.  See section "Differences
-between Links and FreezeML" towards the end of this readme for a description of
-the most important differences.
+between Links and FreezeML" below for a description of the most important
+differences.
 
 
 Reproducing the Paper Results
@@ -108,9 +108,9 @@ You can start the Links REPL by invoking `links --config=freezeml.config` from
 the `~/freezeml` directory.  This loads the config file `freezeml.config` and
 starts the REPL.  The settings in `freezeml.config` implicitly load
 `environment.links` and make its bindings available.  Further, it sets certain
-options that make the behaviour of Links more similar to the behaviour of
-FreezeML.  See the section "Differences between Links and FreezeML" below for an
-explanation of these settings.
+options to align the behaviour of Links with that of FreezeML.  See the section
+"Differences between Links and FreezeML" below for an explanation of these
+settings.
 
 After starting the REPL, you can type in a given example program, followed by
 `;;` and pressing enter.  This will process the snippet and show its type.
@@ -260,8 +260,9 @@ which make Links behave closer to FreezeML:
   * `show_quantifiers=true`
 
     By default, Links doesn't show quantifiers of polymorphic functions/values.
-    Instead of `forall a. (a) -> a`, Links would show only `(a) -> a` by
-    default.  Enabling this setting shows the former, fully qualified type.
+    Instead of `forall a. (a::Any) -> a::Any`, Links would show only `(a::Any)
+    -> a::Any` by default.  Enabling this setting shows the former, fully
+    qualified type.
 
   * `hide_fresh_type_vars=false`
 
