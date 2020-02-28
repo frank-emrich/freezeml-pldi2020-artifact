@@ -154,8 +154,8 @@ filemode : true
 exit : 1
 stderr : @.*Type error:.*
 
-eta-expansion (E3•) (see file ~/freezeml/e4.links)
-e4.links
+eta-expansion (E3•) (see file ~/freezeml/e3dot.links)
+e3dot.links
 filemode : true
 stdout : 0 : Int
 
