@@ -122,10 +122,10 @@ options to align the behaviour of Links with that of FreezeML.  See the section
 settings.
 
 After starting the REPL, you can type in a given example program, followed by
-`;;` and pressing enter.  This will process the snippet and show its type.
+`;` and pressing enter.  This will process the snippet and show its type.
 
 Files containing programs can be loaded by issuing the following in the REPL:
-`@load "filepath/goes/here" ;;`.  Note that example programs A8, E1, and E3 are
+`@load "filepath/goes/here" ;`.  Note that example programs A8, E1, and E3 are
 (deliberately) ill-typed and loading/typing them into the REPL will produce a
 type error.
 
@@ -153,16 +153,16 @@ have setup the REPL in a way such that the programs below are part of the
 command history already.  Thus, instead of typing them into the REPL, you can
 just press the up arrow key after starting the REPL for the first time.
 
-1) An anonymous identity function.  Note the trailing `;;` to terminate REPL
+1) An anonymous identity function.  Note the trailing `;` to terminate REPL
    input.
    ```
-   fun (x) {x} ;;
+   fun (x) {x} ;
    ```
 
 
 2) A named version of the identity function.
    ```
-   fun f(x) {x} ;;
+   fun f(x) {x} ;
    ```
 
 
@@ -171,7 +171,7 @@ just press the up arrow key after starting the REPL for the first time.
    return type is instantiated to be `forall a. a`, too.
    ```
    sig g : (forall a. a) -> (forall a. a)
-   fun g (x) {x} ;;
+   fun g (x) {x} ;
    ```
    A FreezeML equivalent of the definition of `g` would be:
    ```
@@ -179,7 +179,7 @@ just press the up arrow key after starting the REPL for the first time.
    ```
 
    Note that REPL input can span multiple lines, as it must be terminated by
-   `;;`.  For clarity, in the pre-installed command history, we have put all
+   `;`.  For clarity, in the pre-installed command history, we have put all
    functions on a single line each.
 
 
@@ -188,14 +188,14 @@ just press the up arrow key after starting the REPL for the first time.
    return type as before.
    ```
    sig h : (forall a. a) -> (forall a. a)
-   fun h (x) {~x} ;;
+   fun h (x) {~x} ;
    ```
 
 
 5) Using the parameter as a function.
    ```
    sig i : (forall a. a) -> (forall a. a)
-   fun i (x) {x(~x)} ;;
+   fun i (x) {x(~x)} ;
    ```
 
 
@@ -203,32 +203,32 @@ just press the up arrow key after starting the REPL for the first time.
    to an ill-typed program.
    ```
    sig j : (forall a. a) -> (forall a. a)
-   fun j (x) {~x(x)} ;;
+   fun j (x) {~x(x)} ;
    ```
 
 
 7) This doesn't work on its own
    ```
-   fun k(x) {x(x)} ;;
+   fun k(x) {x(x)} ;
    ```
 
 
 8) Neither does this...
    ```
-   fun l(x) {x(~x)} ;;
+   fun l(x) {x(~x)} ;
    ```
 
 
 9) Creates a variable whose value is [], since writing ~[] doesn't work on its
    own
    ```
-   var nil = [] ;;
+   var nil = [] ;
    ```
 
 
 10) Creates a list of three polymorphic `nil`s
     ```
-    map (fun (x) {~nil})([1,2,3]) ;;
+    map (fun (x) {~nil})([1,2,3]) ;
     ```
 
 
