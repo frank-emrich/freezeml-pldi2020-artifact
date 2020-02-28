@@ -1,188 +1,188 @@
-Polymorphic Instantiation (1)
+Polymorphic Instantiation (A1)
 fun(x)(y) { y }
 stdout : fun : (a) -b-> (c::Any) -d-> c::Any
 
-Polymorphic Instantiation (1•)
+Polymorphic Instantiation (A1•)
 $(fun(x)(y) { y })
 stdout : fun : forall a,b::Row,c::(Any,Any),d::Row.(a) -b-> (c::Any) -d-> c::Any
 
-Polymorphic Instantiation (2)
+Polymorphic Instantiation (A2)
 choose(id)
 stdout : fun : ((a) -b-> a) -c-> (a) -b-> a
 
-Polymorphic Instantiation (2•)
+Polymorphic Instantiation (A2•)
 choose(~id)
 stdout : fun : (forall a,b::Row.(a) -b-> a) -c-> forall a,b::Row.(a) -b-> a
 
-Polymorphic Instantiation (3)
+Polymorphic Instantiation (A3)
 choose([])(ids)
 stdout : [] : [forall a,b::Row.(a) -b-> a]
 
-Polymorphic Instantiation (4)
+Polymorphic Instantiation (A4)
 fun(x : (forall a,b::Row. (a) -b-> a)) { x(x) }
 stdout : fun : (forall a,b::Row.(a) -b-> a) -c-> (d) -e-> d
 
-Polymorphic Instantiation (4•)
+Polymorphic Instantiation (A4•)
 fun(x : (forall a,b::Row. (a) -b-> a)) { x(~x) }
 stdout : fun : (forall a,b::Row.(a) -b-> a) -c-> forall a,b::Row.(a) -b-> a
 
-Polymorphic Instantiation (5)
+Polymorphic Instantiation (A5)
 id(auto)
 stdout : fun : (forall a,b::Row.(a) -b-> a) -c-> forall d,e::Row.(d) -e-> d
 
-Polymorphic Instantiation (6)
+Polymorphic Instantiation (A6)
 id(auto')
 stdout : fun : (forall a,b::Row.(a) -b-> a) -c-> (d) -e-> d
 
-Polymorphic Instantiation (6•)
+Polymorphic Instantiation (A6•)
 id(~auto')
 stdout : fun : forall a,b::Row,c::Row.(forall d,e::Row.(d) -e-> d) -b-> (a) -c-> a
 
-Polymorphic Instantiation (7)
+Polymorphic Instantiation (A7)
 choose(id)(auto)
 stdout : fun : (forall a,b::Row.(a) -b-> a) -c-> forall a,b::Row.(a) -b-> a
 
-Polymorphic Instantiation (8), type-checking supposed to fail
+Polymorphic Instantiation (A8), type-checking supposed to fail
 choose(id)(auto')
 exit : 1
 stderr : @.*Type error:.*
 
-Polymorphic Instantiation (9) (see file ~/freezeml/a9.links)
+Polymorphic Instantiation (A9*) (see file ~/freezeml/a9.links)
 a9.links
 filemode : true
 stdout : fun : forall a,b::Row.(a) -b-> a
 
-Polymorphic Instantiation (10)
+Polymorphic Instantiation (A10*)
 poly(~id)
 stdout : (0, true) : (Int, Bool)
 
-Polymorphic Instantiation (11)
+Polymorphic Instantiation (A11*)
 poly($(fun(x:_::(Unl,Any)) { x }))
 stdout : (0, true) : (Int, Bool)
 
-Polymorphic Instantiation (12)
+Polymorphic Instantiation (A12*)
 id(poly)($(fun(x:_::(Unl,Any)) { x }))
 stdout : (0, true) : (Int, Bool)
 
-Inference of Polymorphic Arguments (1)
+Inference of Polymorphic Arguments (B1*)
 fun(f : (forall a,b::Row. (a) -b-> a)) { (f(1), f(true)) }
 stdout : fun : (forall a,b::Row.(a) -b-> a) -c-> (Int, Bool)
 
-Inference of Polymorphic Arguments (2)
+Inference of Polymorphic Arguments (B2*)
 fun(xs : [forall a,b::Row. (a) -b-> a]) { poly(head(xs)) }
 stdout : fun : ([forall a,b::Row.(a) -b-> a]) -c-> (Int, Bool)
 
-Functions on Polymorphic Lists (1)
+Functions on Polymorphic Lists (C1)
 length(ids)
 stdout : 1 : Int
 
-Functions on Polymorphic Lists (2)
+Functions on Polymorphic Lists (C2)
 tail(ids)
 stdout : [] : [forall a,b::Row.(a) -b-> a]
 
-Functions on Polymorphic Lists (3)
+Functions on Polymorphic Lists (C3)
 head(ids)
 stdout : fun : forall a,b::Row.(a) -b-> a
 
-Functions on Polymorphic Lists (4)
+Functions on Polymorphic Lists (C4)
 single(id)
 stdout : [fun] : [(a) -b-> a]
 
-Functions on Polymorphic Lists (4•)
+Functions on Polymorphic Lists (C4•)
 single(~id)
 stdout : [fun] : [forall a,b::Row.(a) -b-> a]
 
-Functions on Polymorphic Lists (5)
+Functions on Polymorphic Lists (C5*)
 ~id :: ids
 stdout : [fun, fun] : [forall a,b::Row.(a) -b-> a]
 
-Functions on Polymorphic Lists (6)
+Functions on Polymorphic Lists (C6*)
 $(fun(x:_::(Unl,Any)) { x }) :: ids
 stdout : [fun, fun] : [forall a,b::Row.(a) -b-> a]
 
-Functions on Polymorphic Lists (7)
+Functions on Polymorphic Lists (C7)
 single(inc) ++ single(id)
 stdout : [fun, fun] : [(Int) -a-> Int]
 
-Functions on Polymorphic Lists (8)
+Functions on Polymorphic Lists (C8*)
 c8.links
 filemode : true
 stdout : fun : forall a,b::Row.(a) -b-> a
 
-Functions on Polymorphic Lists (9)
+Functions on Polymorphic Lists (C9*)
 map(poly)(single(~id))
 stdout : [(0, true)] : [(Int, Bool)]
 
-Functions on Polymorphic Lists (10)
+Functions on Polymorphic Lists (C10)
 map(head)(single(ids))
 stdout : [fun] : [forall a,b::Row.(a) -b-> a]
 
-Application functions (1)
+Application functions (D1*)
 app(poly)(~id)
 stdout : (0, true) : (Int, Bool)
 
-Application functions (2)
+Application functions (D2*)
 revapp(~id)(poly)
 stdout : (0, true) : (Int, Bool)
 
-Application functions (3)
+Application functions (D3*)
 runST(~argST)
 stdout : 0 : Int
 
-Application functions (4)
+Application functions (D4*)
 revapp(~argST)(runST)
 stdout : 0 : Int
 
-eta-expansion (1) (see file ~/freezeml/e1.links), type-checking supposed to fail
+eta-expansion (E1) (see file ~/freezeml/e1.links), type-checking supposed to fail
 e1.links
 filemode : true
 exit : 1
 stderr : @.*Type error:.*
 
-eta-expansion (2) (see file ~/freezeml/e2.links)
+eta-expansion (E2*) (see file ~/freezeml/e2.links)
 e2.links
 filemode : true
 stdout : fun : forall a::Row,b,c::Row.(Int) -a-> (b) -c-> b
 
-eta-expansion (3) (see file ~/freezeml/e3.links), type-checking supposed to fail
+eta-expansion (E3) (see file ~/freezeml/e3.links), type-checking supposed to fail
 e3.links
 filemode : true
 exit : 1
 stderr : @.*Type error:.*
 
-eta-expansion (4) (see file ~/freezeml/e4.links)
+eta-expansion (E3•) (see file ~/freezeml/e4.links)
 e4.links
 filemode : true
 stdout : 0 : Int
 
-FreezeML programs (1)
+FreezeML programs (F1)
 fun id(x) { x } ~id
 stdout : fun : forall a::(Any,Any),b::Row.(a::Any) -b-> a::Any
 
-FreezeML programs (2)
+FreezeML programs (F2)
 var ids = [~id]; ~ids
 stdout : [fun] : [forall a,b::Row.(a) -b-> a]
 
-FreezeML programs (5)
+FreezeML programs (F5*)
 auto(~id)
 stdout : fun : forall a,b::Row.(a) -b-> a
 
-FreezeML programs (6)
+FreezeML programs (F6)
 head(ids) :: ids
 stdout : [fun, fun] : [forall a,b::Row.(a) -b-> a]
 
-FreezeML programs (7)
+FreezeML programs (F7*)
 head(ids)@(3)
 stdout : 3 : Int
 
-FreezeML programs (8)
+FreezeML programs (F8)
 choose (head(ids))
 stdout : fun : (forall a,b::Row.(a) -b-> a) -c-> forall a,b::Row.(a) -b-> a
 
-FreezeML programs (8•)
+FreezeML programs (F8•)
 choose (head(ids)@)
 stdout : fun : ((a) -b-> a) -c-> (a) -b-> a
 
-FreezeML programs (9)
+FreezeML programs (F9)
 var f = revapp(~id); f(poly)
 stdout : (0, true) : (Int, Bool)
