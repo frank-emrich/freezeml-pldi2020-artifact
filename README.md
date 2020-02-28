@@ -159,24 +159,23 @@ first time.
 
 
 1)
-  ```
-  fun (x) {x} ;;
-  ```
+
   The identity function as an anynoymlus function. Note the trailing `;;`
   to terminate REPL input.
+  ```
+    fun (x) {x} ;;
+  ```
 
 
 2)
-  ```
-  fun f(x) {x} ;;
-  ```
+
   A named version of the same function
+  ```
+    fun f(x) {x} ;;
+  ```
 
 3)
-  ```
-  sig g : (forall a. a) -> (forall a. a)
-  fun g (x) {x} ;;
-  ```
+
   The same function, but with a signature that gives the parameter `x` the
   polymorphic type `forall a. a`.
   Further, the signature evokes that the return type is instantiated to be
@@ -184,15 +183,20 @@ first time.
   Note that REPL input can span multiple lines, as it must be terminated by `;`.
   For clarity, in the pre-installed command history, we have put all functions
   on a single line each.
+  ```
+    sig g : (forall a. a) -> (forall a. a)
+    fun g (x) {x} ;;
+  ```
 
 
 4)
-  ```
-  sig h : (forall a. a) -> (forall a. a)
-  fun h (x) {~x} ;;
-  ```
+
   A version of `g` that freezes `x`, hence resulting in the same polymorphic
   return type as before
+  ```
+    sig h : (forall a. a) -> (forall a. a)
+    fun h (x) {~x} ;;
+  ```
 
 5)
   ```
