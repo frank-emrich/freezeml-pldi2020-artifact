@@ -180,13 +180,8 @@ def parseTestScript(stream):
 def main():
     config_file = None
 
-    if len(sys.argv) == 3:
-        filename = sys.argv[1]
-        config_file =  sys.argv[2]
-    elif len(sys.argv) == 2:
-        filename = sys.argv[1]
-    else:
-        raise SystemExit('Usage: run <test file> [<links config file>]')
+    filename = "examples.tests"
+    config_file = "freezeml.config"
 
     cpus=multiprocessing.cpu_count()
     tp = concurrent.futures.ThreadPoolExecutor(max_workers=cpus)
