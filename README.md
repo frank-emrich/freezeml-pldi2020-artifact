@@ -170,6 +170,7 @@ first time.
      fun f(x) {x} ;;
    ```
 
+
 3) The same function, but with a signature that gives the parameter `x` the
    polymorphic type `forall a. a`.
    Further, the signature evokes that the return type is instantiated to be
@@ -190,6 +191,7 @@ first time.
      fun h (x) {~x} ;;
    ```
 
+
 5) Using the parameter as a function
    ```
      sig i : (forall a. a) -> (forall a. a)
@@ -204,10 +206,12 @@ first time.
      fun j (x) {~x(x)} ;;
    ```
 
+
 7) This doesn't work on its own
    ```
      fun k(x) {x(x)} ;;
     ```
+
 
 8) Neitherr does this...
    ```
@@ -224,9 +228,8 @@ first time.
 
 10) Creates a list of three polymorphic nils
     ```
-      map (fun (x) {~nil})([1,2,3]) ;;
+     map (fun (x) {~nil})([1,2,3]) ;;
     ```
-
 
 
 
