@@ -66,8 +66,8 @@ paper.  This is due to an error we only discovered after submitting the paper.
 Program F10 only type-checks in a version of FreezeML that does not obey the
 value restriction.  We will clarify this in the final version of the paper.
 
-Further, we have discovered that examples F3 and F4 need an annotation on
-the variable x, which we will also fix in the final version of the paper.
+Further, we have discovered that examples F3 and F4 need an annotation on the
+variable `x`, which we will also fix in the final version of the paper.
 
 
 Reading examples.tests
