@@ -158,11 +158,13 @@ the REPL, you can just press the up arrow key after starting the REPL for the
 first time.
 
 
-1.```
-  fun (x) {x} ;;
-  ```
+1.
   The identity function as an anynoymlus function. Note the trailing `;;`
   to terminate REPL input.
+  ```
+  fun (x) {x} ;;
+  ```
+
 
 2.```
   fun f(x) {x} ;;
