@@ -83,8 +83,7 @@ from Table 14 the current block represents.
 The second line in most cases contains the actual Links code.  Alternatively, in
 some cases, the second line contains a path to a `.links` file containing the
 actual code.  Note that the paths given in the second line are relative to the
-`~/freezeml` directory.  For clarity, we have also added the *full* path to the
-first line of such blocks.
+`~/freezeml` directory.
 
 Finally, the lines from the third onward give extra information about the
 expected output of the program.  This includes:
@@ -116,8 +115,10 @@ After starting the REPL, you can type in a given example program, followed by
 `;;` and pressing enter.  This will process the snippet and show its type.
 
 Files containing programs can be loaded by issuing the following in the REPL:
-`@load "filepath/goes/here" ;;`.  Note that example programs `e1.links` and
-`e3.links` are ill-typed and will produce a type error.
+`@load "filepath/goes/here" ;;`.  Note that example programs A8, E1, and E3 are
+(deliberately) ill-typed and loading/typing them into the REPL will produce a
+type error.
+
 
 
 Running the Test Suite
@@ -170,7 +171,8 @@ documentation](https://links-lang.org/quick-help.html).
 Typing
 ------
 
-The main differences between Links and FreezeML are the following:
+The main differences between the type systems of Links and FreezeML are the
+following:
 
 
 ### Row typing
@@ -186,7 +188,7 @@ This leads to small differences between the types shown in Table 14 and the
 types shown by Links for the corresponding FreezeML program.  For instance, the
 example A1• is shown to have type `forall a b. a -> b -> b` in Table 14.
 However, the corresponding Links program has type `forall
-a,b::Row,c::(Any,Any),d::Row.(a) -b-> (c::Any) -d-> c::Any` (see line 6 in
+a,b::Row,c::(Any,Any),d::Row.(a) -b-> (c::Any) -d-> c::Any` (see line 7 in
 `examples.tests`).
 
 The difference between FreezeML and Links is that the latter quantifies the row
