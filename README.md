@@ -21,8 +21,8 @@ inside the VM is a Debian Linux 10 and comes with Emacs and Vim editors already
 installed.
 
 
-Reproducing the Paper Results
-=============================
+Implementation
+==============
 
 We have implemented FreezeML in [Links](https://links-lang.org/), a
 functional programming language with a rich set of features.
@@ -30,9 +30,18 @@ functional programming language with a rich set of features.
 The freeze operator is implemented as `~` in Links, meaning that a variable `x`
 is frozen by writing `~x`.  Instantiation and generalisation are written as `e@`
 and `$e`, respectively, as in the paper.  Here, `e` can be an arbitrary Links
-expression, potentially enclosed in parentheses.  The syntax of Links differs
-slightly from FreezeML.  See section "Differences between Links and FreezeML"
-below for a brief description of these differences.
+expression, potentially enclosed in parentheses.
+
+There are several differences between Links and FreezeML.  These are either
+cosmethic (slightly different syntax) or orthogonal to the system presented in
+the paper, e.g. Links has a more powerful type system based on row typing but
+this does not interact with first-class polymorphism.  See section "Differences
+between Links and FreezeML" towards the end of this readme for a description of
+the most important differences.
+
+
+Reproducing the Paper Results
+=============================
 
 The FreezeML paper contains a large set of example programs in Table 14 in
 Appendix A.  The easiest way to verify that Links implements FreezeML is by
@@ -82,8 +91,8 @@ expected output of the program.  This includes:
   * Flag to read a program from a file (`filemode :`)
 
 Note that for type-checking programs the `stdout :` entry contains the expected
-type.  Section "Differences between Links and FreezeML" explains the (minor)
-differences between the types displayed by Links and those shown in Table 14.
+type.  Section "Differences between Links and FreezeML" explains the differences
+between the types displayed by Links and those shown in Table 14.
 
 There are two ways to verify that the programs from `examples.tests` type-check
 in Links with the correct types.
