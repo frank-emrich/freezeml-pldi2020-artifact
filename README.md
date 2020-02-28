@@ -205,29 +205,31 @@ quantifiers at the top of a type annotation.  Consider the following two
 versions of the same function
 
 ```
-sig f1 : forall a. (a) -> a
+sig f1 : forall a,e::Row. (a) -e-> a
 fun f1(x) {x}
 ```
 and
 
 ```
-sig f2 : (a) -> a
+sig f2 : (a) -e-> a
 fun f2(x) {x}
 ```
 
-The only difference is that in `f1` the type variable `a` is explicitly
-quantified, whereas in `f2` the type signature just states `(a) -> a`, without a
-quantifier.  However, both functions are still given the same type, as the type
-variables in the signature of `f2` are implicitly generalised.  The two versions
-only differ in whether or not `a` is bound in the body of the function.  The
-rule is that if the type annotation explicitly states the `forall` quantifier,
-then the type variables are not bound in the body.  **Note:** this is an exact
-opposite of how scoped type variables behave in Haskell.
+The only difference is that in `f1` the type variable `a` and row variable `e`
+are explicitly quantified, whereas in `f2` the type signature just states `(a)
+-e-> a`, without a quantifier.
+However, both functions are still given the same type, as the type variables in
+the signature of `f2` are implicitly quantified.
+The two versions only differ in whether or not `a` and `e` are bound in the body
+of the function.  The rule is that if the type annotation explicitly states the
+`forall` quantifier, then the type variables are not bound in the body.
+**Note:** this is the exact opposite of how scoped type variables behave in
+Haskell.
 
 Hence, the following version of `f1` is illegal:
 
 ```
-sig f1 : forall a. (a) -> a
+sig f1 : forall a, e::Row. (a) -e-> a
 fun f1(x) {x : a}
 ```
 
@@ -236,7 +238,7 @@ as `a` is unbound.
 However, the following version of `f2` is legal:
 
 ```
-sig f2 : (a) -> a
+sig f2 : (a) -e-> a
 fun f2(x) {x : a}
 ```
 
