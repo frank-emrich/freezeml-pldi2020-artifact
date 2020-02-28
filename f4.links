@@ -1,0 +1,2 @@
+fun auto'(id : (forall a,e::Row. (a) -e-> a)) { id(id) }
+~auto'
