@@ -269,6 +269,9 @@ The syntax of FreezeML and Links differ as follows:
     binding it applies to.  Such signatures can also be used with `var`
     bindings.
 
+  * In Links, we write `[Int]` for the type "list of integers". Similarly,
+    `(Int, Bool)` denotes "tuple of integers and booleans".
+
 For more information on Links' syntax, see [its
 documentation](https://links-lang.org/quick-help.html).
 
