@@ -107,7 +107,9 @@ type.  Section "Differences between Links and FreezeML" explains the differences
 between the types displayed by Links and those shown in Table 14.
 
 There are two ways to verify that the programs from `examples.tests` type-check
-in Links with the correct types.
+in Links with the correct types. Both methods rely on invoking a vanilla
+installation of Links 0.9.1, which is present in the VM.
+
 
 
 Testing via REPL
