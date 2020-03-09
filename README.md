@@ -137,7 +137,8 @@ Files containing programs can be loaded by issuing the following in the REPL:
 (deliberately) ill-typed and loading/typing them into the REPL will produce a
 type error.
 
-For more information about using the REPL, see the corresponding section below.
+To exit the REPL type `@quit;` or press Ctrl+D.  For more information about
+using the REPL, see the corresponding section below.
 
 
 Running examples in a batch
