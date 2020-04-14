@@ -32,7 +32,7 @@ programming language.  Links version provided inside this virtual machine is
 opam install links
 ```
 
-The sources are publicly available [here](https://github.com/links-lang/links).
+The sources are publicly available at [[https://github.com/links-lang/links]].
 
 The freeze operator is implemented as `~` in Links, meaning that a variable `x`
 is frozen by writing `~x`.  Instantiation and generalisation are written as `e@`
@@ -50,52 +50,47 @@ most important differences.
 Reproducing the Paper Results
 =============================
 
-The FreezeML paper contains a large set of example programs in Table 14 in
-Appendix A.  The easiest way to verify that Links implements FreezeML is by
-checking that for each program in Table 14 there exists a corresponding version
+The FreezeML paper contains a large set of example programs in Figure 1 in
+Section 2.1.  The easiest way to verify that Links implements FreezeML is by
+checking that for each program in Figure 1 there exists a corresponding version
 in Links of the same type, modulo minor differences described later on.
 
-Note that those examples in Table 14 marked with X (i.e., A8, E1, and
-E3) do not type-check in FreezeML and do not type-check in Links, either. The
-examples from Table 14 rely on the functions given in Figure 15 with their
-respective types.
+Note that those examples in Figure 1 marked with X (i.e., A8, E1, and E3) do not
+type-check in FreezeML and do not type-check in Links, either.  The examples
+from Figure 1 rely on the functions given in Figure 2 with their respective
+types.
 
 Thus, we provide two separate files in the `~/freezeml` directory:
 
-  * `environment.links` contains the definitions of functions shown in Figure
-    15.  This is a valid Links source file.
-
-  * `examples.tests` contains the examples from Table 14, which in turn use the
+  * `environment.links` contains the definitions of functions shown in Figure 2.
+    This is a valid Links source file.
+  * `examples.tests` contains the examples from Figure 1, which in turn use the
     functions from `environment.links`
-
 
 The file `examples.tests` contains verbatim translations of the corresponding
 programs from Figure 14, with the following special cases:
 
-1. The examples A11\*, A12\*, C6\*, E3, and E3• exhibit the interaction of
-   FreezeML and Links' inference of linearity, which we described in section 6
-   of the paper: In these examples, we need to annotate function parameters with
-   their kind to prevent Links from inferring that the parameter is linear.
-   However, the *types* of the function parameters are still inferred.
+  1. The examples A11\*, A12\*, C6\*, E3, and E3• exhibit the interaction of
+     FreezeML and Links' inference of linearity, which we described in Section 6
+     of the paper.  In these examples, we need to annotate function parameters
+     with their kind to prevent Links from inferring that the parameter is
+     linear.  However, the *types* of the function parameters are still
+     inferred as expected.
 
-2. We have discovered that examples F3 and F4 need an annotation on the
-   variable `x`, which we will fix in the final version of the paper.
-
-3. We have omitted example F10.  This is due to an oversight we only discovered
-   after submitting the paper.  Program F10 only type-checks in a version of
-   FreezeML that does not obey the value restriction.  We will clarify this in
-   the final version of the paper.
+  2. Example F10 from the paper is omitted as it only type-checks in a version
+     of FreezeML that does not obey the value restriction.  Links enforces the
+     value restriction, thus there is no way to typecheck example F10 .
 
 
 Reading examples.tests
 ----------------------
 
 The file `examples.tests` contains several blocks of consecutive lines,
-separated by an empty line.  Each such block represents one example from Table
-14.
+separated by an empty line.  Each such block represents one example from Figure
+1.
 
 The first line in each block contains a description, indicating which example
-from Table 14 the current block represents.
+from Figure 1 the current block represents.
 
 The second line in most cases contains the actual Links code.  Alternatively, in
 some cases, the second line contains a path to a `.links` file containing the
@@ -111,7 +106,7 @@ expected output of the program.  This includes:
 
 Note that for type-checking programs the `stdout :` entry contains the expected
 type.  Section "Differences between Links and FreezeML" explains the differences
-between the types displayed by Links and those shown in Table 14.
+between the types displayed by Links and those shown in Figure 1.
 
 There are two ways to verify that the programs from `examples.tests` type-check
 in Links with the correct types. Both methods rely on invoking a vanilla
@@ -162,74 +157,72 @@ have setup the REPL in a way such that the programs below are part of the
 command history already.  Thus, instead of typing them into the REPL, you can
 just press the up arrow key after starting the REPL for the first time.
 
-1) An anonymous identity function.  Note the trailing `;` to terminate REPL
-   input.
-   ```
-   fun (x) {x} ;
-   ```
+  1. An anonymous identity function.  Note the trailing `;` to terminate REPL
+     input.
+     ```
+     fun (x) {x} ;
+     ```
 
-2) A named version of the identity function.
-   ```
-   fun f(x) {x} ;
-   ```
+  2. A named version of the identity function.
+     ```
+     fun f(x) {x} ;
+     ```
 
-3) The same function, but with a signature that gives the parameter `x` the
-   polymorphic type `forall a. a`.  Further, the signature evokes that the
-   return type is instantiated to be `forall a. a`, too.
-   ```
-   sig g : (forall a. a) -> (forall a. a)
-   fun g (x) {x} ;
-   ```
-   A FreezeML equivalent of the definition of `g` would be:
-   ```
-   let (g : (forall a. a) -> (forall a. a)) = \x.x in ...
-   ```
+  3. The same function, but with a signature that gives the parameter `x` the
+     polymorphic type `forall a. a`.  Further, the signature evokes that the
+     return type is instantiated to be `forall a. a`, too.
+     ```
+     sig g : (forall a. a) -> (forall a. a)
+     fun g (x) {x} ;
+     ```
+     A FreezeML equivalent of the definition of `g` would be:
+     ```
+     let (g : (forall a. a) -> (forall a. a)) = \x.x in ...
+     ```
+     Note that REPL input can span multiple lines, as it must be terminated by
+     `;`.  For clarity, in the pre-installed command history, we have put all
+     functions on a single line each.
 
-   Note that REPL input can span multiple lines, as it must be terminated by
-   `;`.  For clarity, in the pre-installed command history, we have put all
-   functions on a single line each.
+  4. A version of `g` that freezes `x`, hence resulting in the same polymorphic
+     return type as before.
+     ```
+     sig h : (forall a. a) -> (forall a. a)
+     fun h (x) {~x} ;
+     ```
 
+  5. Using the parameter as a function.
+     ```
+     sig i : (forall a. a) -> (forall a. a)
+     fun i (x) {x(~x)} ;
+     ```
 
-4) A version of `g` that freezes `x`, hence resulting in the same polymorphic
-   return type as before.
-   ```
-   sig h : (forall a. a) -> (forall a. a)
-   fun h (x) {~x} ;
-   ```
+  6. Version of `i` that switches the location of the freeze operator, which
+     leads to an ill-typed program.
+     ```
+     sig j : (forall a. a) -> (forall a. a)
+     fun j (x) {~x(x)} ;
+     ```
 
-5) Using the parameter as a function.
-   ```
-   sig i : (forall a. a) -> (forall a. a)
-   fun i (x) {x(~x)} ;
-   ```
+  7. This doesn't work on its own:
+     ```
+     fun k(x) {x(x)} ;
+     ```
 
-6) Version of `i` that switches the location of the freeze operator, which leads
-   to an ill-typed program.
-   ```
-   sig j : (forall a. a) -> (forall a. a)
-   fun j (x) {~x(x)} ;
-   ```
+  8. Neither does this...
+     ```
+     fun l(x) {x(~x)} ;
+     ```
 
-7) This doesn't work on its own
-   ```
-   fun k(x) {x(x)} ;
-   ```
+  9. Create a variable whose value is [], since writing ~[] doesn't work on its
+     own:
+     ```
+     var nil = [] ;
+     ```
 
-8) Neither does this...
-   ```
-   fun l(x) {x(~x)} ;
-   ```
-
-9) Creates a variable whose value is [], since writing ~[] doesn't work on its
-   own
-   ```
-   var nil = [] ;
-   ```
-
-10) Creates a list of three polymorphic `nil`s
-    ```
-    map (fun (x) {~nil})([1,2,3]) ;
-    ```
+  10. Create a list of three polymorphic `nil`s:
+      ```
+      map (fun (x) {~nil})([1,2,3]) ;
+      ```
 
 
 Differences between Links and FreezeML
@@ -290,9 +283,9 @@ effect variable `c`.  Here, fresh means that the variable occurs nowhere else.
 The same type can be written as `(a) -c-> b`, which is also just syntactic sugar
 for `(a) {|c} -> b`.
 
-This leads to small differences between the types shown in Table 14 and the
+This leads to small differences between the types shown in Figure 1 and the
 types shown by Links for the corresponding FreezeML program.  For instance, the
-example A1• is shown to have type `forall a b. a -> b -> b` in Table 14.
+example A1• is shown to have type `forall a b. a -> b -> b` in Figure 1.
 However, the corresponding Links program has type `forall
 a,b::Row,c::(Any,Any),d::Row.(a) -b-> (c::Any) -d-> c::Any` (see line 7 in
 `examples.tests`).
@@ -325,9 +318,8 @@ fun f2(x) {x}
 
 The only difference is that in `f1` the type variable `a` and row variable `e`
 are explicitly quantified, whereas in `f2` the type signature just states `(a)
--e-> a`, without a quantifier.
-However, both functions are still given the same type, as the type variables in
-the signature of `f2` are implicitly quantified.
+-e-> a`, without a quantifier.  However, both functions are still given the same
+type, as the type variables in the signature of `f2` are implicitly quantified.
 The two versions only differ in whether or not `a` and `e` are bound in the body
 of the function.  The rule is that if the type annotation explicitly states the
 `forall` quantifier, then the type variables are not bound in the body.
@@ -350,7 +342,7 @@ sig f2 : (a) -e-> a
 fun f2(x) {x : a}
 ```
 
-This differs from FreezeML, where `let (x : forall a. A) = M in N ` binds a in
+This differs from FreezeML, where `let (x : forall a. A) = M in N ` binds `a` in
 `M`, if `M` is generalisable.
 
 
@@ -364,8 +356,8 @@ which make Links behave closer to FreezeML:
 
     For simplicity, we do not use Links' usual prelude of builtin functions, but
     only use `environment.links`, which contains definitions of functions from
-    Table 15 (Appendix A).  This file is evaluated at startup and its bindings
-    become globally available.
+    Figure 2.  This file is evaluated at startup and its bindings become
+    globally available.
 
   * `show_quantifiers=true`
 
