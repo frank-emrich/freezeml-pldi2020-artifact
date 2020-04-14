@@ -26,13 +26,14 @@ Implementation
 
 We have implemented FreezeML in [Links](https://links-lang.org/), a functional
 programming language.  Links version provided inside this virtual machine is
-0.9.1.  Current version of Links can be installed on Linux via OPAM:
+0.9.1. The current version of Links can be installed on Linux via OPAM:
 
 ```
 opam install links
 ```
 
-The sources are publicly available at [[https://github.com/links-lang/links]].
+However, Links is already preinstalled in the VM. The sources are publicly
+available at [https://github.com/links-lang/links].
 
 The freeze operator is implemented as `~` in Links, meaning that a variable `x`
 is frozen by writing `~x`.  Instantiation and generalisation are written as `e@`
