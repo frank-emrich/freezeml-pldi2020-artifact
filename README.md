@@ -33,7 +33,7 @@ opam install links
 ```
 
 However, Links is already preinstalled in the VM. The sources are publicly
-available at [https://github.com/links-lang/links].
+available at <https://github.com/links-lang/links>.
 
 The freeze operator is implemented as `~` in Links, meaning that a variable `x`
 is frozen by writing `~x`.  Instantiation and generalisation are written as `e@`
